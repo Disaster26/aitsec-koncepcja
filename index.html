@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Doradztwo cyberbezpieczeństwa IT Warszawa | AITSec - Advanced IT Security</title>
+<meta name="description" content="AITSec - niezależne doradztwo cyberbezpieczeństwa IT: ocena ryzyka i dojrzałości, architektura bezpieczeństwa, klasyfikacja informacji i DLP. Warszawa i okolice.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#071019">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='6' fill='%23071019'/%3E%3Cpath d='M8 17V8h9M32 23v9h-9' stroke='%2335e7ff' stroke-width='4' fill='none'/%3E%3Ccircle cx='20' cy='20' r='4.5' fill='%23ffb84d'/%3E%3C/svg%3E">
+<link rel="preload" href="fonts/sg-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="img/hero-m-720.webp" imagesrcset="img/hero-m-720.webp 720w, img/hero-m-1080.webp 1080w, img/hero-m-1500.webp 1500w" imagesizes="100vw" media="(max-width: 760px)" fetchpriority="high">
+<link rel="preload" as="image" href="img/hero-1920.webp" imagesrcset="img/hero-1280.webp 1280w, img/hero-1920.webp 1920w, img/hero-2560.webp 2560w" imagesizes="100vw" media="(min-width: 761px)" fetchpriority="high">
+<style>
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500 700;font-display:swap;src:url(fonts/sg-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Space Grotesk";font-style:normal;font-weight:500 700;font-display:swap;src:url(fonts/sg-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:"Manrope";font-style:normal;font-weight:400 800;font-display:swap;src:url(fonts/manrope-latin.woff2) format("woff2");unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Manrope";font-style:normal;font-weight:400 800;font-display:swap;src:url(fonts/manrope-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+1EF2-1EFF,U+20A0-20AB,U+20AD-20C4,U+2C60-2C7F,U+A720-A7FF}
+:root{--navy:#071019;--navy2:#0c1a27;--ink:#0d1b26;--text:#33424e;--muted:#5a6873;--cyan:#35e7ff;--teal:#007c91;--gold:#ffb84d;--gray:#eef2f5;--line:#d5dde3;--wrap:min(92vw,1640px)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--text);font:400 17px/1.6 Manrope,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--teal)}
+h1,h2,h3{font-family:"Space Grotesk",Manrope,sans-serif;color:var(--ink);line-height:1.12;letter-spacing:-.01em;margin:0}
+h2{font-size:clamp(30px,3.2vw,52px);font-weight:700}
+h3{font-size:clamp(20px,1.5vw,25px);font-weight:600}
+p{margin:0}
+.wrap{width:var(--wrap);margin:0 auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+section{scroll-margin-top:64px}
+
+/* znak: narożniki zakresu + złoty punkt */
+.mark{width:34px;height:34px;flex:none}
+.frame{position:relative}
+.frame::before,.frame::after{content:"";position:absolute;width:34px;height:34px;pointer-events:none;z-index:2}
+.frame::before{left:-1px;top:-1px;border-left:4px solid var(--cyan);border-top:4px solid var(--cyan)}
+.frame::after{right:-1px;bottom:-1px;border-right:4px solid var(--cyan);border-bottom:4px solid var(--cyan)}
+
+/* nagłówek */
+.top{position:fixed;inset:0 0 auto 0;z-index:50;color:#fff;transition:background .25s,box-shadow .25s}
+.top.solid{background:rgba(7,16,25,.97);box-shadow:0 1px 0 rgba(53,231,255,.18)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:20px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font:700 23px/1 "Space Grotesk",sans-serif;letter-spacing:-.01em}
+.logo small{display:block;font:500 11.5px/1.2 Manrope,sans-serif;color:#b5c8d1;letter-spacing:.01em;margin-top:3px}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{color:#e8f4f8;text-decoration:none;font-weight:600;font-size:15.5px}
+.nav a:hover{color:var(--cyan)}
+.nav a.tel{color:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:3px;font:700 16.5px/1 Manrope,sans-serif;text-decoration:none;cursor:pointer;border:2px solid transparent;transition:background .2s,color .2s,border-color .2s}
+.btn-cyan{background:var(--cyan);color:var(--navy)}
+.btn-cyan:hover{background:#7ef0ff}
+.btn-line{border-color:rgba(232,244,248,.65);color:#fff;background:rgba(7,16,25,.25)}
+.btn-line:hover{border-color:var(--cyan);color:var(--cyan)}
+.nav .btn{min-height:44px;padding:0 18px;font-size:15px}
+.burger{display:none;background:none;border:0;color:#fff;width:46px;height:46px;padding:11px;cursor:pointer}
+.burger span{display:block;height:2px;background:currentColor;margin:5px 0}
+
+/* hero */
+.hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;color:#fff;background:var(--navy);overflow:hidden}
+.hero picture,.hero picture img{position:absolute;inset:0;width:100%;height:100%}
+.hero picture img{object-fit:cover;object-position:60% 40%}
+.hero::before{content:"";position:absolute;inset:0 0 auto 0;height:170px;z-index:1;background:linear-gradient(180deg,rgba(7,16,25,.75),rgba(7,16,25,0))}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,16,25,.94) 0%,rgba(7,16,25,.82) 34%,rgba(7,16,25,.25) 62%,rgba(7,16,25,0) 80%)}
+.hero .wrap{position:relative;z-index:2;padding:110px 0 70px}
+.hero-txt{max-width:760px}
+.hero h1{color:#fff;font-size:clamp(34px,3.7vw,64px);font-weight:700;line-height:1.07}
+.hero .lead{margin-top:24px;font-size:clamp(17px,1.15vw,20px);color:#d6e4ea;max-width:620px}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero .where{margin-top:22px;font-size:15px;color:#b5c8d1;display:flex;align-items:center;gap:10px}
+.hero .where i{width:8px;height:8px;background:var(--gold);border-radius:50%;display:inline-block}
+
+/* oferta */
+.sec{padding:clamp(64px,7vw,120px) 0}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 64px;align-items:end;margin-bottom:clamp(32px,3.5vw,56px)}
+.head p{font-size:18px;max-width:640px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2vw,32px)}
+.card{background:#fff}
+.card button{all:unset;display:block;cursor:zoom-in;width:100%}
+.card .frame{position:relative}
+.card .ph{aspect-ratio:3/2;overflow:hidden;background:var(--navy)}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.card:hover .ph img{transform:scale(1.03)}
+.card .body{padding:24px 2px 0}
+.card h3{margin-bottom:10px}
+.card p{color:var(--muted)}
+
+/* dla kogo */
+.gray{background:var(--gray)}
+.who{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px)}
+.who .intro p{margin-top:22px;font-size:18px}
+.who ul{list-style:none;margin:0;padding:0;display:grid;gap:0}
+.who li{display:flex;gap:20px;padding:28px 0;border-top:1px solid var(--line);font-size:19px;color:var(--ink);font-weight:500}
+.who li:last-child{border-bottom:1px solid var(--line)}
+.pt{width:26px;height:26px;flex:none;margin-top:2px}
+
+/* kompetencje (ciemna, siatka z ich strony) */
+.dark{background:var(--navy);color:#c4d4dc;position:relative;overflow:hidden}
+.dark::before{content:"";position:absolute;inset:0;opacity:.55;background:linear-gradient(90deg,transparent 0 55px,rgba(53,231,255,.10) 55px 56px,transparent 57px),linear-gradient(0deg,transparent 0 55px,rgba(53,231,255,.08) 55px 56px,transparent 57px);background-size:56px 56px;pointer-events:none}
+.dark .wrap{position:relative}
+.dark h2,.dark h3{color:#fff}
+.dark .head p{color:#b5c8d1}
+.certs{display:flex;flex-wrap:wrap;gap:14px 0;margin:0 0 clamp(40px,4vw,64px);padding:0;list-style:none}
+.certs li{font:700 clamp(30px,3.6vw,60px)/1 "Space Grotesk",sans-serif;color:#fff;display:flex;align-items:center}
+.certs li+li::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--gold);margin:0 clamp(16px,1.8vw,30px)}
+.certs-note{color:#b5c8d1;margin:-28px 0 clamp(40px,4vw,64px);font-size:16px}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,4vw,72px)}
+.col{border-top:2px solid rgba(53,231,255,.5);padding-top:26px}
+.col ul{margin:18px 0 0;padding:0;list-style:none}
+.col li{padding:12px 0 12px 26px;position:relative;border-bottom:1px solid rgba(181,200,209,.14)}
+.col li::before{content:"";position:absolute;left:0;top:21px;width:9px;height:9px;border-left:2px solid var(--cyan);border-top:2px solid var(--cyan)}
+
+/* współpraca */
+.coop{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(36px,5vw,96px);align-items:center}
+.coop .ph{aspect-ratio:4/3;overflow:hidden}
+.coop .ph img{width:100%;height:100%;object-fit:cover}
+.steps{list-style:none;margin:30px 0 0;padding:0;position:relative}
+.steps::before{content:"";position:absolute;left:12px;top:14px;bottom:14px;width:2px;background:var(--line)}
+.steps li{position:relative;padding:14px 0 14px 50px;font-size:19px;font-weight:600;color:var(--ink)}
+.steps li::before{content:"";position:absolute;left:5px;top:20px;width:16px;height:16px;background:#fff;border:2px solid var(--teal)}
+.steps li:last-child::before{background:var(--gold);border-color:var(--gold);border-radius:50%}
+.steps li span{display:block;font-weight:400;font-size:16px;color:var(--muted);margin-top:2px}
+.coop .close{margin-top:26px;font-size:18px}
+
+/* kontakt */
+.contact{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(36px,5vw,96px)}
+.data{margin-top:30px;display:grid;gap:18px}
+.data div{border-top:1px solid var(--line);padding-top:14px}
+.data b{display:block;font-size:14px;color:var(--muted);font-weight:600}
+.data a,.data span{font:600 20px/1.35 "Space Grotesk",sans-serif;color:var(--ink);text-decoration:none}
+.data a:hover{color:var(--teal)}
+form{background:#fff;padding:clamp(24px,3vw,44px);display:grid;grid-template-columns:1fr 1fr;gap:18px}
+form .full{grid-column:1/-1}
+label{display:block;font-size:14.5px;font-weight:600;color:var(--ink);margin-bottom:6px}
+input,select,textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);padding:13px 14px;border:1px solid #b9c5ce;border-radius:3px;background:#fff}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--teal);outline-offset:0;border-color:var(--teal)}
+textarea{min-height:130px;resize:vertical}
+.form-foot{display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between}
+.form-foot small{color:var(--muted);font-size:14px;max-width:420px}
+.btn-dark{background:var(--navy);color:#fff}
+.btn-dark:hover{background:#12304a}
+.msg{display:none;color:var(--teal);font-weight:600}
+
+/* stopka */
+footer{background:#050b12;color:#9fb3bd;padding:48px 0 34px;font-size:15px}
+footer .wrap{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:28px}
+footer a{color:#dce9ee;text-decoration:none}
+footer a:hover{color:var(--cyan)}
+footer .bottom{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center;border-top:1px solid rgba(181,200,209,.15);padding-top:22px;margin-top:8px;font-size:14px}
+footer p+p{margin-top:6px}
+.wylinka-badge{display:inline-flex;align-items:center;gap:.4em;color:inherit;text-decoration:none;font-size:.875em;line-height:1;opacity:.85}
+.wylinka-badge:hover,.wylinka-badge:focus-visible{opacity:1}
+.wylinka-badge:focus-visible{outline:2px solid currentColor;outline-offset:3px;border-radius:2px}
+.wylinka-badge svg{width:18px;height:18px;flex:none;overflow:visible}
+.wylinka-badge b{font-weight:600}
+.wylinka-badge .wy-old{opacity:.45;transform-origin:40px 30px;transition:transform .32s cubic-bezier(.3,.7,.4,1),opacity .32s ease-out}
+.wylinka-badge .wy-pod{opacity:0;transition:opacity .2s ease-out .08s}
+.wylinka-badge:hover .wy-old,.wylinka-badge:focus-visible .wy-old{transform:translate(9px,7px) rotate(9deg);opacity:0}
+.wylinka-badge:hover .wy-pod,.wylinka-badge:focus-visible .wy-pod{opacity:1}
+@media (prefers-reduced-motion:reduce){.wylinka-badge .wy-old,.wylinka-badge .wy-pod{transition:none}.wylinka-badge:hover .wy-old,.wylinka-badge:focus-visible .wy-old{transform:none;opacity:.45}.wylinka-badge:hover .wy-pod,.wylinka-badge:focus-visible .wy-pod{opacity:0}}
+
+/* lightbox */
+.lb{position:fixed;inset:0;z-index:90;background:rgba(5,11,18,.94);display:none;align-items:center;justify-content:center;padding:4vw}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:86vh;object-fit:contain}
+.lb button{position:absolute;top:14px;right:14px;width:48px;height:48px;border:0;background:none;color:#fff;font-size:34px;cursor:pointer;line-height:1}
+
+@media (min-width:1900px){.cards{gap:40px}}
+@media (max-width:1100px){
+ .nav a:not(.btn){display:none}
+}
+@media (max-width:860px){
+ .head,.who,.coop,.contact{grid-template-columns:1fr}
+ .cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin:0 calc(-4vw);padding:0 4vw 6px;scrollbar-width:none}
+ .cards::-webkit-scrollbar{display:none}
+ .card{flex:0 0 82%;scroll-snap-align:center}
+ .cols{grid-template-columns:1fr}
+ footer .wrap{grid-template-columns:1fr 1fr}
+ footer .wrap>div:first-child{grid-column:1/-1}
+}
+@media (max-width:760px){
+ .top .wrap{height:60px}
+ .nav .btn{display:none}
+ .burger{display:block}
+ .nav.open{position:fixed;inset:60px 0 auto 0;background:var(--navy);flex-direction:column;align-items:stretch;gap:0;padding:8px 6vw 22px;border-top:1px solid rgba(53,231,255,.2)}
+ .nav.open a:not(.btn){display:block;padding:15px 0;font-size:18px;border-bottom:1px solid rgba(181,200,209,.14)}
+ .nav.open .btn{display:flex;margin-top:18px;min-height:52px}
+ .hero{align-items:flex-end}
+ .hero picture img{object-position:62% 30%}
+ .hero::after{background:linear-gradient(180deg,rgba(7,16,25,.35) 0%,rgba(7,16,25,0) 26%,rgba(7,16,25,.55) 46%,rgba(7,16,25,.95) 70%,#071019 100%)}
+ .hero .wrap{padding:90px 0 28px}
+ .hero h1{font-size:clamp(28px,8.2vw,36px)}
+ .hero .lead{margin-top:16px;font-size:16px;line-height:1.5}
+ .hero .cta{margin-top:24px;gap:10px}
+ .hero .cta .btn{flex:1 1 auto;padding:0 16px;min-height:50px;font-size:16px}
+ .hero .where{margin-top:16px;font-size:14px}
+ form{grid-template-columns:1fr}
+ .who li{font-size:17px;padding:22px 0}
+ .certs{gap:12px 26px}
+ .certs li{font-size:34px}
+ .certs li+li::before{display:none}
+ .steps li{font-size:17px}
+}
+@media (max-width:380px){.hero .cta .btn{padding:0 12px;font-size:15px}.logo small{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top" id="top">
+ <div class="wrap">
+  <a class="logo" href="#" aria-label="AITSec - strona główna">
+   <svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 16V5h11M35 24v11H24" stroke="#35e7ff" stroke-width="4" fill="none"/><circle cx="20" cy="20" r="4.6" fill="#ffb84d"/></svg>
+   <span>AITSec<small>Advanced IT Security</small></span>
+  </a>
+  <nav class="nav" id="nav" aria-label="Menu">
+   <a href="#oferta">Oferta</a>
+   <a href="#dla-kogo">Dla kogo</a>
+   <a href="#kompetencje">Kompetencje</a>
+   <a href="#wspolpraca">Współpraca</a>
+   <a href="#kontakt">Kontakt</a>
+   <a class="tel" href="tel:+48723895230">723 895 230</a>
+   <a class="btn btn-cyan" href="#kontakt">Umów rozmowę</a>
+  </nav>
+  <button class="burger" id="burger" aria-label="Otwórz menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+ <picture>
+  <source media="(max-width: 760px)" srcset="img/hero-m-720.webp 720w, img/hero-m-1080.webp 1080w, img/hero-m-1500.webp 1500w" sizes="100vw" width="1080" height="1442">
+  <img src="img/hero-1920.webp" srcset="img/hero-1280.webp 1280w, img/hero-1920.webp 1920w, img/hero-2560.webp 2560w" sizes="100vw" width="2560" height="1709" alt="Specjalistka bezpieczeństwa z tabletem w korytarzu serwerowni" fetchpriority="high">
+ </picture>
+ <div class="wrap">
+  <div class="hero-txt">
+   <h1 id="h1">Doradztwo cyberbezpieczeństwa IT&nbsp;- wiesz, gdzie jest ryzyko i co zrobić najpierw</h1>
+   <p class="lead">Ocena ryzyka, architektura bezpieczeństwa, klasyfikacja informacji i DLP. Praktyka ze środowisk wojskowych, rządowych i systemów niejawnych.</p>
+   <div class="cta">
+    <a class="btn btn-cyan" href="#kontakt">Umów rozmowę</a>
+    <a class="btn btn-line" href="tel:+48723895230">Zadzwoń</a>
+   </div>
+   <p class="where"><i></i>Warszawa i okolice</p>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="oferta" aria-labelledby="h-oferta">
+ <div class="wrap">
+  <div class="head">
+   <h2 id="h-oferta">Oferta</h2>
+   <p>Niezależna ekspertyza dla organizacji, które muszą wiedzieć, jak naprawdę wygląda ich bezpieczeństwo, i podejmować decyzje według wpływu na ryzyko, a nie według listy narzędzi.</p>
+  </div>
+  <div class="cards">
+   <article class="card">
+    <button type="button" class="frame" data-big="img/ryzyko-1200.webp" aria-label="Powiększ zdjęcie: ocena ryzyka"><div class="ph"><img src="img/ryzyko-640.webp" srcset="img/ryzyko-640.webp 640w, img/ryzyko-1200.webp 1200w" sizes="(max-width:860px) 82vw, 30vw" width="1200" height="800" alt="Specjaliści analizujący środowisko IT przy monitorach" loading="lazy" decoding="async"></div></button>
+    <div class="body"><h3>Ocena ryzyka i dojrzałości</h3><p>Analiza środowiska, identyfikacja luk i kolejność działań ustalona według wpływu na ryzyko operacyjne.</p></div>
+   </article>
+   <article class="card">
+    <button type="button" class="frame" data-big="img/architektura-1200.webp" aria-label="Powiększ zdjęcie: architektura bezpieczeństwa"><div class="ph"><img src="img/architektura-640.webp" srcset="img/architektura-640.webp 640w, img/architektura-1200.webp 1200w" sizes="(max-width:860px) 82vw, 30vw" width="1200" height="798" alt="Przełącznik sieciowy w szafie serwerowej" loading="lazy" decoding="async"></div></button>
+    <div class="body"><h3>Architektura bezpieczeństwa</h3><p>Projektowanie kontroli, procesów i rozwiązań technicznych dla środowisk IT, chmurowych i niejawnych.</p></div>
+   </article>
+   <article class="card">
+    <button type="button" class="frame" data-big="img/klasyfikacja-1200.webp" aria-label="Powiększ zdjęcie: klasyfikacja informacji"><div class="ph"><img src="img/klasyfikacja-640.webp" srcset="img/klasyfikacja-640.webp 640w, img/klasyfikacja-1200.webp 1200w" sizes="(max-width:860px) 82vw, 30vw" width="1200" height="800" alt="Panel krosowy z ponumerowanymi gniazdami" loading="lazy" decoding="async"></div></button>
+    <div class="body"><h3>Klasyfikacja informacji i DLP</h3><p>Uporządkowana klasyfikacja informacji, procesy ochrony danych i mechanizmy zapobiegania wyciekom.</p></div>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section class="sec gray" id="dla-kogo" aria-labelledby="h-kogo">
+ <div class="wrap who">
+  <div class="intro">
+   <h2 id="h-kogo">Dla kogo pracujemy</h2>
+   <p>AITSec to niezależna firma doradcza w obszarze cyberbezpieczeństwa IT, ochrony informacji i oceny ryzyka. Wspieramy organizacje o wysokich wymaganiach regulacyjnych, korzystając z praktyki zdobytej w środowiskach wojskowych, rządowych, infrastruktury krytycznej i systemów niejawnych.</p>
+  </div>
+  <ul>
+   <li><svg class="pt" viewBox="0 0 26 26" aria-hidden="true"><path d="M2 10V2h8M24 16v8h-8" stroke="#007c91" stroke-width="2.5" fill="none"/><circle cx="13" cy="13" r="3.4" fill="#ffb84d"/></svg>Organizacje przetwarzające dane wrażliwe, informacje niejawne lub krytyczne aktywa biznesowe.</li>
+   <li><svg class="pt" viewBox="0 0 26 26" aria-hidden="true"><path d="M2 10V2h8M24 16v8h-8" stroke="#007c91" stroke-width="2.5" fill="none"/><circle cx="13" cy="13" r="3.4" fill="#ffb84d"/></svg>Podmioty objęte wymaganiami regulacyjnymi, audytowymi, kontraktowymi lub sektorowymi.</li>
+   <li><svg class="pt" viewBox="0 0 26 26" aria-hidden="true"><path d="M2 10V2h8M24 16v8h-8" stroke="#007c91" stroke-width="2.5" fill="none"/><circle cx="13" cy="13" r="3.4" fill="#ffb84d"/></svg>Zespoły IT, bezpieczeństwa i compliance, które potrzebują niezależnej ekspertyzy w projekcie.</li>
+  </ul>
+ </div>
+</section>
+
+<section class="sec dark" id="kompetencje" aria-labelledby="h-komp">
+ <div class="wrap">
+  <div class="head">
+   <h2 id="h-komp">Kompetencje i doświadczenie</h2>
+   <p>Certyfikacje, poświadczenie bezpieczeństwa osobowego i praca w środowiskach, w których błąd kosztuje najwięcej.</p>
+  </div>
+  <ul class="certs" aria-label="Certyfikacje">
+   <li>OSCC</li><li>OSWP</li><li>CISSP</li><li>BTL1</li><li>Black Hat</li>
+  </ul>
+  <p class="certs-note">Black Hat: programy szkoleniowe z detekcji i DFIR (analiza incydentów i informatyka śledcza).</p>
+  <div class="cols">
+   <div class="col">
+    <h3>Technologie</h3>
+    <ul>
+     <li>Cisco, Palo Alto Networks, Tufin, VMware</li>
+     <li>Microsoft Security, Compliance and Identity</li>
+     <li>PowerShell, Windows Server, SCCM / Intune</li>
+     <li>Poświadczenie bezpieczeństwa osobowego i praca w środowiskach niejawnych</li>
+    </ul>
+   </div>
+   <div class="col">
+    <h3>Doświadczenie sektorowe</h3>
+    <ul>
+     <li>Utrzymanie i rozwój systemów bezpieczeństwa IT w środowiskach o wysokiej krytyczności</li>
+     <li>Cyber, kryptologia, systemy niejawne i ochrona informacji</li>
+     <li>Ćwiczenia międzynarodowe NATO, projekty klasyfikacji informacji i DLP</li>
+     <li>Zarządzanie wsparciem teleinformatycznym i współpraca z zespołami operacyjnymi</li>
+    </ul>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="wspolpraca" aria-labelledby="h-wsp">
+ <div class="wrap coop">
+  <button type="button" class="frame" data-big="img/wspolpraca-1200.webp" aria-label="Powiększ zdjęcie: rozmowa o projekcie" style="all:unset;display:block;cursor:zoom-in;position:relative;width:100%"><div class="ph"><img src="img/wspolpraca-640.webp" srcset="img/wspolpraca-640.webp 640w, img/wspolpraca-1200.webp 1200w" sizes="(max-width:860px) 92vw, 46vw" width="1200" height="800" alt="Rozmowa o projekcie przy laptopie" loading="lazy" decoding="async"></div></button>
+  <div>
+   <h2 id="h-wsp">Jak wygląda współpraca</h2>
+   <ol class="steps">
+    <li>Rozpoznanie kontekstu i wymagań<span>Środowisko, dane, obowiązujące przepisy i kontrakty.</span></li>
+    <li>Ustalenie zakresu oraz kryteriów sukcesu<span>Co sprawdzamy i po czym poznamy, że cel jest osiągnięty.</span></li>
+    <li>Analiza, warsztaty i rekomendacje<span>Wspólnie z zespołami IT, bezpieczeństwa i compliance.</span></li>
+    <li>Plan wdrożenia i wsparcie decyzji<span>Najbliższy sensowny krok i kolejne, ułożone według ryzyka.</span></li>
+   </ol>
+   <p class="close">Jeśli Twoja organizacja potrzebuje niezależnego partnera w cyberbezpieczeństwie IT, porozmawiajmy o ryzyku, priorytetach i najbliższym sensownym kroku.</p>
+  </div>
+ </div>
+</section>
+
+<section class="sec gray" id="kontakt" aria-labelledby="h-kontakt">
+ <div class="wrap contact">
+  <div>
+   <h2 id="h-kontakt">Umów rozmowę</h2>
+   <p style="margin-top:20px;font-size:18px">Opisz krótko, czego dotyczy sprawa. Odpowiemy i zaproponujemy termin rozmowy.</p>
+   <div class="data">
+    <div><b>Telefon</b><a href="tel:+48723895230">+48 723 895 230</a></div>
+    <div><b>E-mail</b><a href="mailto:kontakt@aitsec.pl">kontakt@aitsec.pl</a></div>
+    <div><b>LinkedIn</b><a href="https://www.linkedin.com/in/maciej-klotz-3749251a0/" rel="noopener" target="_blank">Maciej Klotz</a></div>
+    <div><b>Obszar działania</b><span>Warszawa i okolice</span></div>
+   </div>
+  </div>
+  <form id="form" novalidate>
+   <div><label for="f-n">Imię i nazwisko</label><input id="f-n" name="n" autocomplete="name"></div>
+   <div><label for="f-o">Organizacja</label><input id="f-o" name="o" autocomplete="organization"></div>
+   <div><label for="f-e">E-mail</label><input id="f-e" name="e" type="email" autocomplete="email"></div>
+   <div><label for="f-t">Telefon</label><input id="f-t" name="t" type="tel" autocomplete="tel"></div>
+   <div class="full"><label for="f-z">Obszar</label><select id="f-z" name="z"><option>Ocena ryzyka i dojrzałości</option><option>Architektura bezpieczeństwa</option><option>Klasyfikacja informacji i DLP</option><option>Inny temat</option></select></div>
+   <div class="full"><label for="f-m">Cel rozmowy</label><textarea id="f-m" name="m"></textarea></div>
+   <div class="full form-foot"><small>Dane z formularza służą wyłącznie do odpowiedzi na zapytanie.</small><button class="btn btn-dark" type="submit">Wyślij zapytanie</button></div>
+   <p class="msg full" id="msg" role="status">To podgląd strony - formularz zacznie wysyłać wiadomości na docelowej stronie.</p>
+  </form>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div>
+   <a class="logo" href="#" aria-label="AITSec"><svg class="mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M5 16V5h11M35 24v11H24" stroke="#35e7ff" stroke-width="4" fill="none"/><circle cx="20" cy="20" r="4.6" fill="#ffb84d"/></svg><span>AITSec<small>Advanced IT Security</small></span></a>
+   <p style="margin-top:16px;max-width:420px">Doradztwo cyberbezpieczeństwa IT dla organizacji o wysokich wymaganiach ochrony informacji.</p>
+  </div>
+  <div>
+   <p><a href="tel:+48723895230">+48 723 895 230</a></p>
+   <p><a href="mailto:kontakt@aitsec.pl">kontakt@aitsec.pl</a></p>
+   <p>Warszawa i okolice</p>
+  </div>
+  <div>
+   <p><a href="#oferta">Oferta</a></p>
+   <p><a href="#kompetencje">Kompetencje</a></p>
+   <p><a href="#kontakt">Kontakt</a></p>
+  </div>
+  <div class="bottom">
+   <span>&copy; 2026 AITSec, NIP 5782979123. Zdjęcia poglądowe (Unsplash).</span>
+   <a class="wylinka-badge" href="https://wylinka.pl/?utm_source=aitsec.pl&amp;utm_medium=stopka&amp;utm_campaign=wykonanie" rel="noopener" title="Strona wykonana przez Wylinka"><svg viewBox="0 0 64 64" aria-hidden="true" focusable="false" fill="currentColor"><path d="M9.8 22.8l-1.2-7.9 2.2-3.7 15.5 4.6-.5 1.5-7.2 5.5 4.7 15.6 5-15.6 7 0 4.1 12.7-4.2-.9-2.6 1.8-.8-2.2-5.3 15.6-4.3 0 .4 .2-2.1 2.8-1.3-1.1 1.1-1.4-3.1 .2-.1-1.7 2.2-.1-5.7-16.5-4.8 .6-.8 3.1 0 .5-.3 .5 .8 2.2-1.6 .5-.4-1.3-.8 1.6-1.5-.8 .8-1.6-1.4 .6-.6-1.6 2.3-.8 .2-.4 1.3-4.8 5.9-.8-2.4-6.9zM15.2 13.7l-.1-.4-.4 .8-.1 .8 .1 1 .1 .4 .3 .7 .3-.9 .1-.7 0-.8z"/><path class="wy-pod" d="M37.1 49.8l-4.5-13.3 2.6-1.8 4.2 .9 .9 2.8 3-9.7 0-.5 .1-.8 3.2-8.4 .5-1 .6-1 .9-1.1 1.3-1 1.1-.7 1.4-.5 1.4-.3 .7 0 .9 0 1.2 .3 1.4 .6 .8 .5 .7 .7 .6 .7 .5 .9 .3 .9 .1 .9 0 .8-.2 .9-.5 .9-.5 .6-.7 .5-.7 .3-.1-.1 0-.1 .5-.5 .3-.7 .2-.5 0-.6-.1-.6-.3-.7-.4-.5-.4-.4-.5-.3-.6-.3-.7 0-.7 .1-.6 .1-.5 .4-.5 .5-.3 .5-.2 .7-.1 1.5-1.4 5.1-.8 3.3-.3 .7-.5 .7-6 17.5 1.9 .1-.1 1.7-3.1-.2 1.1 1.4-1.3 1.1-2.1-2.8 .4-.2z"/><path class="wy-old" d="M40.8 50l.4-.2-4.1 0-4.2-12.5 2.5-1.7 4.3 .9 .6 1.9 .6-1.6 0-.3 2.4-7.8 0-.5 .1-.8 3.2-8.4 .4-.8 .6-.9 .9-1.2 .9-.9 1.3-.8 1.4-.6 1.2-.3 1.4-.1 1.3 .1 .6 .2 .8 .3 1.1 .6 .9 .7 .7 .9 .5 .9 .3 .9 .1 1.1-.1 .9-.3 .9-.4 .7-.6 .7-.6 .4-.6 .2-.1-.1 0-.1 .5-.5 .3-.7 .2-.5 0-.5-.1-.6-.2-.6-.3-.5-.4-.5-.5-.3-.6-.3-.7-.1-.6 0-.6 .1-.6 .3-.6 .5-.3 .4-.2 .5-.1 .5-.1 1.5-1.4 5.1-.8 3.3-.3 .7-.5 .7-6 17.5 1.9 .1-.1 1.7-3.1-.2 1.1 1.4-1.3 1.1zM49.6 17.1l.6 1.7-1.5 1.9 .4 .4 1.8-2.1-.7-2.1zM48.1 28.3l.5 1.8-1.7 1.8 .4 .4 1.9-2-.6-2.2zM37.9 41.7l1.7-1.5-.4-.4-1.7 1.4zM42.6 38.7l-1.5 2.8 1.1 2-1.3 2.6 .5 .2 1.5-2.8-1.1-2 1.4-2.5z"/></svg><span>wykonanie: <b>Wylinka</b></span></a>
+  </div>
+ </div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Powiększone zdjęcie"><button type="button" id="lbx" aria-label="Zamknij">&times;</button><img id="lbi" alt=""></div>
+
+<script>
+(function(){
+ var top=document.getElementById('top'),nav=document.getElementById('nav'),bg=document.getElementById('burger');
+ function s(){top.classList.toggle('solid',scrollY>40||nav.classList.contains('open'))}
+ addEventListener('scroll',s,{passive:true});s();
+ bg.addEventListener('click',function(){var o=nav.classList.toggle('open');bg.setAttribute('aria-expanded',o);s()});
+ nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');bg.setAttribute('aria-expanded',false);s()}});
+ var lb=document.getElementById('lb'),li=document.getElementById('lbi');
+ document.querySelectorAll('[data-big]').forEach(function(b){b.addEventListener('click',function(){var i=b.querySelector('img');li.src=i.currentSrc||i.src;li.alt=i.alt;lb.classList.add('on');setTimeout(function(){li.src=b.dataset.big},150)})});
+ function c(){lb.classList.remove('on')}
+ lb.addEventListener('click',function(e){if(e.target!==li)c()});
+ addEventListener('keydown',function(e){if(e.key==='Escape')c()});
+ document.getElementById('form').addEventListener('submit',function(e){e.preventDefault();document.getElementById('msg').style.display='block'});
+})();
+</script>
+</body>
+</html>
